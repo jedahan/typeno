@@ -5,6 +5,6 @@ authors = ["Jonathan Dahan <hi@jonathan.is>"]
 edition = "2018"
 
 [dependencies]
-ssd1675 = "0.1.0"
+ssd1675 = { git = "https://github.com/jedahan/ssd1675", branch = "yellow" }
 linux-embedded-hal = "0.2.2"
 embedded-graphics = "0.4.5"

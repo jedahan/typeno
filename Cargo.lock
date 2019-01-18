@@ -172,7 +172,7 @@ dependencies = [
 [[package]]
 name = "ssd1675"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
+source = "git+https://github.com/jedahan/ssd1675?branch=yellow#14a035e906235c8b2c0ee2a596fd8ccb05c0c66b"
 dependencies = [
  "embedded-graphics 0.4.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "embedded-hal 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -193,7 +193,7 @@ version = "0.1.0"
 dependencies = [
  "embedded-graphics 0.4.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "linux-embedded-hal 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "ssd1675 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ssd1675 0.1.0 (git+https://github.com/jedahan/ssd1675?branch=yellow)",
 ]
 
 [[package]]
@@ -230,7 +230,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum rustc_version 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)" = "c5f5376ea5e30ce23c03eb77cbe4962b988deead10910c372b226388b594c084"
 "checksum semver 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)" = "d4f410fedcf71af0345d7607d246e7ad15faaadd49d240ee3b24e5dc21a820ac"
 "checksum spidev 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "1ba01d3ef92a37e898fecac76cd3e1b33c999395e2d70787608d9678c4293e04"
-"checksum ssd1675 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "deee3523a1949928f36f98772dce8a59632bfffffb161d603376431f5408af36"
+"checksum ssd1675 0.1.0 (git+https://github.com/jedahan/ssd1675?branch=yellow)" = "<none>"
 "checksum sysfs_gpio 0.5.3 (registry+https://github.com/rust-lang/crates.io-index)" = "3d68f2cae3c7d39f54ce8a858cc31ffb01974744ee65e5b4999b6037cd691e3f"
 "checksum void 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)" = "6a02e4885ed3bc0f2de90ea6dd45ebcbb66dacffe03547fadbb0eeae2770887d"
 "checksum winapi 0.2.8 (registry+https://github.com/rust-lang/crates.io-index)" = "167dc9d6949a9b857f3451275e911c3f44255842c1f7a76f33c55103a909087a"

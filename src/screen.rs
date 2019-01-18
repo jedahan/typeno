@@ -13,6 +13,7 @@ use embedded_graphics::prelude::*;
 
 const ROWS: u16 = 212;
 const COLS: u8 = 104;
+const SIZE: usize = ROWS as usize * COLS as usize / 8;
 
 #[rustfmt::skip]
 const LUT_FAST_YELLOW: [u8; 70] = [
@@ -35,11 +36,15 @@ const LUT_FAST_YELLOW: [u8; 70] = [
     0,     0,    0,    0,    0,
 ];
 
-pub struct Screen<'a> {
-    display: GraphicDisplay<'a>
+pub struct Screen<'a>
+{
+    display: Option<GraphicDisplay<'a, ssd1675::Interface<Spidev,Pin,Pin,Pin,Pin>>>,
+    black_buffer: &'a mut [u8; SIZE],
+    color_buffer: &'a mut [u8; SIZE],
 }
 
-impl<'a> Screen<'a> {
+impl<'a> Screen<'a>
+{
     pub fn new() -> Self {
         // Configure SPI
         let mut spi = Spidev::open("/dev/spidev0.0").expect("SPI device");
@@ -80,8 +85,6 @@ impl<'a> Screen<'a> {
 
         let controller = ssd1675::Interface::new(spi, cs, busy, dc, reset);
 
-        let mut black_buffer = [0u8; ROWS as usize * COLS as usize / 8];
-        let mut color_buffer = [0u8; ROWS as usize * COLS as usize / 8];
         let config = Builder::new()
             .dimensions(Dimensions {
                 rows: ROWS,
@@ -94,8 +97,15 @@ impl<'a> Screen<'a> {
             .expect("invalid configuration");
         let display = Display::new(controller, config);
 
-        Self {
-            display: GraphicDisplay::new(display, &mut black_buffer, &mut color_buffer)
-        }
+        let black_buffer = &mut [0u8; SIZE];
+        let color_buffer = &mut [0u8; SIZE];
+
+        let mut screen = Screen {
+          black_buffer,
+          color_buffer,
+          display: None,
+        };
+        screen.display = Some(GraphicDisplay::new(display, screen.black_buffer, screen.color_buffer));
+        screen
     }
 }
